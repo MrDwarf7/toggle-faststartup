@@ -1,5 +1,6 @@
 using namespace RegistryPath
 
+
 function CorrectRegPath {
     [OutputType([string], [System.Exception])]
     param(
@@ -16,12 +17,14 @@ function CorrectRegPath {
 
     if ($RegPath -match '^HK') {
         # If the RegPath starts with 'HK', we assume it's a registry path
+        # this handles both eg: 'HKLM' AND 'HKEY_LOCAL_MACHINE'
         # and we need to prefix it with 'Registry::'
         $outPath = "Registry::$RegPath";
     };
 
     return [string]$outPath;
 }
+
 
 function GetRegistryValue {
     [OutputType([PSCustomObject], [System.Exception])]
@@ -30,7 +33,7 @@ function GetRegistryValue {
         [string]$RegKey = $null,
         [string]$PropertyName = $null
     )
-    [PSCustomObject]$registryObject = $null; # will be @() later
+    [PSCustomObject]$registryObject = $null; # Fill with data from registry
     [System.Exception]$err = $null;
     [PSCustomObject]$output = $null;
 
@@ -58,7 +61,7 @@ function GetRegistryValue {
 
 
     if ($null -eq $PropertyName) {
-        # If PropertyName is null, we assume we want the whole object
+        # If PropertyName is null, we assume we want the whole object - this is in order to fill out the returning type/object
         $PropertyName = $RegKey;
     };
 

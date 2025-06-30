@@ -34,36 +34,6 @@ using module .\Lib\utils.psm1
 
 Write-Host("");
 
-# function InvertValue {
-#     param(
-#         # We can't take the value as we have no idea what type it is and PowerShell doesn't support proper generics (ty miCroSongt)
-#         $TypeNameOfValue = $null
-#     )
-#     $inverseValue = $null;
-#
-#     if ($null -eq $TypeNameOfValue) {
-#         Write-Host("Error: Value is null") -ForegroundColor Red;
-#         $inverseValue = $null;
-#         throw New-Object System.Exception("Value is null");
-#     }
-#
-#     switch ($TypeNameOfValue) {
-#         "System.Int32" {
-#             $inverseValue = [int]$currentValue.Value -eq 0 ? 1 : 0;
-#         }
-#         "System.Boolean" {
-#             $inverseValue = -not [bool]$currentValue.Value;
-#         }
-#         default {
-#             Write-Host("Error: Unsupported registry value type '$($currentValue.TypeNameOfValue)' for '$regName'.") -ForegroundColor Red;
-#             $inverseValue = $null;
-#             throw New-Object System.Exception("Unsupported registry value type '$($currentValue.TypeNameOfValue)' for '$regName'.");
-#         }
-#     }
-#
-#     return $inverseValue;
-# }
-
 
 function GetWindowsTool {
     [OutputType([any])]
@@ -95,8 +65,10 @@ function GetWindowsTool {
 
     # Error path-way technically - we failed all general stop-checks
     Write-Host("Error: Tool '$ToolName' not found in System32 or PATH.") -ForegroundColor Red;
+
     return [void]$null;
 }
+
 
 function Setup {
     [OutputType([void])]
@@ -132,6 +104,7 @@ function Setup {
     }
     return [void]$null;
 }
+
 
 function Main {
     [OutputType([int], [System.Exception])]
@@ -197,7 +170,7 @@ function Main {
         Write-Host("Fast startup is now [ $means ]") -ForegroundColor Yellow;
     };
 
-    return 0
+    return 0;
 }
 
 

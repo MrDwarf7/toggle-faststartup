@@ -1,6 +1,7 @@
 using namespace System.Security.Principal
 using namespace IsAdmin;
 
+
 function Get-CurrentPrincipal {
     [OutputType([Security.Principal.WindowsPrincipal])]
     param();
@@ -41,5 +42,6 @@ function IsAdmin {
 
     return [bool]$isAdmin;
 }
+
 
 Export-ModuleMember -Function IsAdmin;

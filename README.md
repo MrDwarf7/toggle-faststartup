@@ -43,12 +43,31 @@ In both cases, the script will check the current state of fast startup and switc
 **Note:** This script requires administrative privileges to modify the necessary registry settings. If you are not running PowerShell as an administrator, you will be prompted to do so.
 
 Because this module requires administrative permissions, you can either run it
-from an elevated terminal, or if you hate having to open a new shell just
+from an elevated terminal; or if you hate having to open a new shell just
 to run something - you can use a command like this if you have the 'sudo'
 command enabled for Windows.
 
 ```powershell
 sudo pwsh.exe -c .\toggle-faststartup
+```
+
+#### Note - Alternative to Windows `sudo` feature
+
+If you prefer, you may use `gsudo` (This is my personal preference)
+
+I also use `scoop` to install anything wherever possible,
+if you don't have it (scoop) or `gsudo` installed, you can find them here:
+
+Scoop:
+  [scoop.sh](https://scoop.sh/)
+
+gsudo:
+  [gsudo link](https://gerardog.github.io/gsudo/)
+
+Alternative command you would run with `gsudo`:
+
+```powershell
+gsudo pwsh.exe -c .\toggle-faststartup
 ```
 
 ## Project Structure
@@ -64,7 +83,7 @@ The project is structured as follows:
 
 ## Author
 
-MrDwarf7
+MrDwarf7, Blake B. <github.com/MrDwarf7>
 
 ## Copyright
 
